@@ -1,0 +1,88 @@
+[
+    {
+        "id": 1,
+        "titulo": "Lofi1",
+        "ruta": "musica/ChillLofi1.mp3"
+    },
+    {
+        "id": 2,
+        "titulo": "Lofi2",
+        "ruta": "musica/ChillStudy.mp3"
+    },
+    {
+        "id": 3,
+        "titulo": "CozyRain",
+        "ruta": "musica/CozyRain.mp3"
+    },
+    {
+        "id": 4,
+        "titulo": "LofiMusic",
+        "ruta": "musica/LofiMusic.mp3"
+    },
+    {
+        "id": 5,
+        "titulo": "AmbientLofi",
+        "ruta": "musica/AmbientLofi.mp3"
+    },
+    {
+        "id": 6,
+        "titulo": "AmbientLofi1",
+        "ruta": "musica/AmbientLofi1.mp3"
+    },
+    {
+        "id": 7,
+        "titulo": "AmbientLofi2",
+        "ruta": "musica/AmbientLofi2.mp3"
+    },
+    {
+        "id": 8,
+        "titulo": "AmbientLofi3",
+        "ruta": "musica/AmbientLofi3.mp3"
+    },
+    {
+        "id": 9,
+        "titulo": "AmbientLofi4",
+        "ruta": "musica/AmbientLofi4.mp3"
+    },
+    {
+        "id": 10,
+        "titulo": "AmbientLofi5",
+        "ruta": "musica/AmbientLofi5.mp3"
+    },
+    {
+        "id": 11,
+        "titulo": "AmbientLofi6",
+        "ruta": "musica/AmbientLofi6.mp3"
+    },
+    {
+        "id": 12,
+        "titulo": "AmbientLofi7",
+        "ruta": "musica/AmbientLofi7.mp3"
+    },
+    {
+        "id": 13,
+        "titulo": "AmbientLofi8",
+        "ruta": "musica/AmbientLofi8.mp3"
+    },
+    {
+        "id": 14,
+        "titulo": "AmbientLofi9",
+        "ruta": "musica/AmbientLofi9.mp3"
+    },
+    {
+        "id": 15,
+        "titulo": "Midnight",
+        "ruta": "musica/Midnight.mp3"
+    },
+    {
+        "id": 16,
+        "titulo": "Smooth",
+        "ruta": "musica/Smooth.mp3"
+    },
+    {
+        "id": 17,
+        "titulo": "Sunflower",
+        "ruta": "musica/Sunflower.mp3"
+    }
+
+]

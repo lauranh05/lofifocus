@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pomodoro.css">
+    <!--FUENTES-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Story+Script&display=swap" rel="stylesheet">
+    <!--ICONOS-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>LofiFocus</title>
+</head>
+<body>
+
+    <main>
+        <p class="titulo">LofiFocus</p>
+        <div class="contador">
+            <p id="cronometro">25:00</p>
+            <p id="descanso">05:00</p>
+        </div>
+        <div class="botones">
+            <button class="boton" id="btn1">[25/5 min]</button>
+            <button class="boton" id="btn2">[30/5 min]</button>
+            <button class="boton" id="btn3">[30/10 min]</button>
+            <button class="boton" id="btn4">[50/10 min]</button>
+            <button class="boton" id="btn5">[60/10 min]</button>
+            <button class="boton" id="btn6">[60/15 min]</button>
+            <audio src="efectos/audioTerminar.m4a" id="audioTerminar"></audio>
+        </div>
+
+        <div class="otras">
+            <div>
+                <button id="btnEmpezar" class="btnOtro">[Start]</button>
+                <button id="btnStop" class="btnOtro">[Stop]</button>
+            </div>
+        </div>
+        
+        <!--
+        <div class="dibujar">
+                <button class="btnOtro" id="btnDibujar">[Dibujar]</button>
+                <canvas id="campo" class="oculto" width="500" height="500"> </canvas>
+                <button class="btnCerrar" id="btnCerrar">X</button>
+            </div>
+        -->
+        
+    </main>
+
+    <footer>
+        <audio id="reproductorAudio"></audio>
+        <div class="bloque-izq">
+            <div class="autor">
+                <span class="material-icons" id="persona-icono">person</span>
+                <p>LauThingsDumb</p>
+            </div>
+        </div>
+        
+        <div class="bloque-centro">
+            <div class="reproductor">
+                <span class="material-icons" id="atrasMusic">skip_previous</span>
+                <span class="material-icons" id="playMusic">play_circle</span>
+                <span class="material-icons" id="delanteMusic">skip_next</span>
+            </div>
+
+            <div class="sonido">   
+                <span class="material-icons" id="volumenMusic">volume_up</span>
+                <input type="range" id="volumen" class="barra" min="0" max="1" step="0.1" value="0.5">
+            </div>
+        </div>
+        
+        <div class="bloque-der">
+            <span class="material-icons" id="configuracion">settings</span>
+            <div class="hucha">
+                <span class="material-icons">coffee</span>
+                <p>Invite to coffee!</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="pantalla-config", id="pantalla-config">
+        <p>Currently, this is almost done, just wait!</p>
+        <span class="material-icons" id="btnCerrarConfig">cancel</span>
+    </div>
+
+    <script src="pomodoro.js"></script>
+</body>
+</html>
