@@ -138,7 +138,7 @@ function cambiarTempo(){
     btn3.addEventListener('click', function(){
         cronometro.textContent = '30:00';
         descanso.textContent = '10:00';
-        tiempoTotalSeg = 60*25;
+        tiempoTotalSeg = 60*30;
         tiempoDesSeg = 60*10;
     });
     btn4.addEventListener('click', function(){
@@ -167,6 +167,7 @@ function configuracion(){
     let pantalla = document.getElementById('pantalla-config');
     pantalla.classList.add('oculto');
     btnConfig.addEventListener('click', function(){
+        console.log('pulsado el boton');
         pantalla.classList.remove('oculto');
     });
 
@@ -280,6 +281,17 @@ function reproducirMusica(){
             volumenMusic.textContent = 'volume_up';
         }
     });
+
+    volumenMusic.addEventListener('click', function(){
+            if( volumenMusic.textContent ==='volume_up'){
+                volumenMusic.textContent = 'volume_off';
+                reproductorAudio.volume = 0;
+            }
+            else{
+                volumenMusic.textContent ='volume_up'
+                reproductorAudio.volume = barraVolumen.value;
+            }
+        });
 
     reproductorAudio.addEventListener('ended', function(){
         cancionActual++;
