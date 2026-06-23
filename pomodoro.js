@@ -234,7 +234,7 @@ function resetear(){
 
 //GET MUSICA
 function musica(){
-    let recurso = '../musica/musica.json';
+    let recurso = './musica/musica.json';
     //GET 
     fetch(recurso).then(function(respuesta){
         if(respuesta.ok){
