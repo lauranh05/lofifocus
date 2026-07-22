@@ -39,18 +39,18 @@ main{
 }
 
 #cronometro{
-    font-size: 10em;
+    font-size: 16em;
     color: #F8F9FA;
     line-height: 0%;
     font-family: "Story Script", sans-serif;
-    margin-top: 50px;
-    margin-bottom: 90px;
+    margin-top: 30px;
+    margin-bottom: 160px;
 }
 
 
 #descanso{
-    font-size: 3em;
-    margin-top: 0px;
+    font-size: 5em;
+    margin-top: 10px;
     color: #F8F9FA;
     line-height: 0%;
     font-family: "Story Script", sans-serif;
@@ -70,7 +70,7 @@ main{
 
 .boton{
     border-radius: 20px;
-    font-size: 2.5em;
+    font-size: 2.8em;
     padding: 10px;
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.288);
@@ -145,12 +145,6 @@ main{
     margin-top: 20px;
 }
 
-canvas{
-    background-color: white;
-    border: 2px solid black;
-    border-radius: 5px;
-}
-
 .material-icons {
     font-size: 60px !important;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
@@ -222,8 +216,17 @@ footer{
     backdrop-filter: blur(20px);
     height: auto;
     border:  5px solid #ffdce31a;
+    margin-right: 10px;
+}
 
-    display: flex;
+.arriba{
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 2px;
+}
+
+.bajo{
+        display: flex;
     flex-direction: row;
     align-items: center;
     align-content: center;

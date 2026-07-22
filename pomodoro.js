@@ -31,95 +31,26 @@ let audioTerminar = document.getElementById('audioTerminar');
 let arrayCanciones = [];
 let cancionActual = 0;
 
+//canvas
+let canvas = document.getElementById('campo');
+let ctx = canvas.getContext('2d');
+let audioContext;
+let analyser;
+let source;
+
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 // FUNCIONAMIENTO DEL PROGRAMA
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-//dibujarCanvas();
 cambiarTempo();
 reproducirMusica();
 configuracion();
 empezarContador();
 musica();
-
+visualizador();
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 // FUNCIONES CON LA LOGICA
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
-/*BOTON DE DIBUJAR
-function dibujarCanvas(){
-    let btnDibujar = document.getElementById('btnDibujar');
-    let btnCerrar = document.getElementById('btnCerrar');
-    let canvas = document.getElementById('campo');
-    let ctx = canvas.getContext('2d');
-    canvas.classList.add('oculto');
-    btnCerrar.classList.add('oculto');
-    btnDibujar.addEventListener('click', function(){
-        canvas.classList.remove('oculto');
-        btnCerrar.classList.remove('oculto');
-        empezarDibujo();
-    });
-
-    btnCerrar.addEventListener('click', function(){
-        borrarCanvas();
-        canvas.classList.add('oculto');
-        btnCerrar.classList.add('oculto');
-    });
-}
-
-function empezarDibujo(){
-    let canvas = document.getElementById('campo');
-    let ctx = canvas.getContext('2d');
-    let x = 0,y = 0, dibujando = false;
-
-    canvas.addEventListener('mousedown', function (e){
-        let rect = canvas.getBoundingClientRect();
-        x = e.clientX - rect.left;
-        y = e.clientY - rect.top;
-        dibujando = true;
-    });
-
-    canvas.addEventListener('mousemove', function(e){
-        if(dibujando === true){
-            let rect = canvas.getBoundingClientRect();
-            dibujar(x,y,e.clientX - rect.left, e.clientY - rect.top);
-            x = e.clientX - rect.left;
-            y = e.clientY - rect.top;
-        }
-    });
-
-    canvas.addEventListener('mouseup', function(e){
-        if(dibujando ===true){
-            let rect = canvas.getBoundingClientRect();
-            dibujar(x,y,e.clientX - rect.left, e.clientY - rect.top);
-            x = 0;
-            y = 0;
-            dibujando = false;
-        }
-    });
-}
-
-function dibujar(x1,y1,x2,y2){
-    let canvas = document.getElementById('campo');
-    let ctx = canvas.getContext('2d');
-
-    ctx.beginPath();
-    ctx.strokeStyle = '#000000';
-    ctx.lineWidth = 3;
-
-    ctx.moveTo(x1,y1);
-    ctx.lineTo(x2,y2);
-    ctx.stroke();
-    ctx.closePath();
-}
-
-function borrarCanvas(){
-    let canvas = document.getElementById('campo');
-    let ctx = canvas.getContext('2d');
-    ctx.beginPath();
-    ctx.clearRect(0,0,canvas.width, canvas.height);
-}
-*/
 
 //CAMBIAR TEXTO
 function cambiarTempo(){
@@ -267,6 +198,8 @@ function reproducirMusica(){
             reproductorAudio.pause();
         }
 
+        
+
     });
 
     let barraVolumen = document.getElementById('volumen');
@@ -323,6 +256,57 @@ function reproducirMusica(){
     });
 
 
+}
+
+function visualizador(){
+    let audio = document.getElementById('reproductorAudio');
+    audio.addEventListener('play', () => {
+        if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioContext.createAnalyser();
+            source = audioContext.createMediaElementSource(audio);
+            source.connect(analyser);
+            analyser.connect(audioContext.destination);
+            analyser.fftSize = 64; 
+            
+            dibujarVisualizador();
+        }
+    });
+}
+
+function dibujarVisualizador(){
+    requestAnimationFrame(dibujarVisualizador);
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+    if (!analyser) return;
+    //datos del audio
+    analyser.getByteFrequencyData(dataArray);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const barWidth = 10; 
+    const espacio = 4;
+    
+    // Calculamos el centro exacto del canvas
+    const centroX = canvas.width / 2;
+
+    for (let i = 0; i < bufferLength; i++) {
+        const barHeight = (dataArray[i] / 255) * canvas.height;
+        
+        // Mantenemos tu paleta neón
+        if (i < bufferLength / 3) {
+            ctx.fillStyle = 'rgb(255, 255, 255)';
+        } else {
+            ctx.fillStyle = 'rgb(255, 255, 255)';
+        }
+        
+        ctx.shadowBlur = 10; 
+        let xDerecha = centroX + (i * (barWidth + espacio));
+        ctx.fillRect(xDerecha, canvas.height - barHeight, barWidth, barHeight);
+        if (i > 0) {
+            let xIzquierda = centroX - (i * (barWidth + espacio));
+            ctx.fillRect(xIzquierda, canvas.height - barHeight, barWidth, barHeight);
+        }
+    }
 }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
