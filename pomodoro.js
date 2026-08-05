@@ -23,6 +23,8 @@ let volumenMusic = document.getElementById('volumenMusic');
 let tiempoTotalSeg = 60*25;
 let reloj = null;
 let tiempoDesSeg = 60*5;
+let letraTiempo = '25:00';
+let letraDescanso = '5:00';
 
 //AUDIO TERMINAR
 let audioTerminar = document.getElementById('audioTerminar');
@@ -38,6 +40,7 @@ let audioContext;
 let analyser;
 let source;
 
+canvas.style.display = "none";
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 // FUNCIONAMIENTO DEL PROGRAMA
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -47,6 +50,7 @@ configuracion();
 empezarContador();
 musica();
 visualizador();
+resetear();
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 // FUNCIONES CON LA LOGICA
@@ -59,36 +63,49 @@ function cambiarTempo(){
         descanso.textContent = '05:00';
         tiempoTotalSeg = 60*25;
         tiempoDesSeg = 60*5;
+        letraTiempo = '25:00';
+        letraDescanso = '5:00';
     });
     btn2.addEventListener('click', function(){
         cronometro.textContent = '30:00';
         descanso.textContent = '05:00';
         tiempoTotalSeg = 60*30;
         tiempoDesSeg = 60*5;
+        letraTiempo = '30:00';
+        letraDescanso = '5:00';
+
     });
     btn3.addEventListener('click', function(){
         cronometro.textContent = '30:00';
         descanso.textContent = '10:00';
         tiempoTotalSeg = 60*30;
         tiempoDesSeg = 60*10;
+        letraTiempo = '30:00';
+        letraDescanso = '10:00';
     });
     btn4.addEventListener('click', function(){
         cronometro.textContent = '50:00';
         descanso.textContent = '10:00';
         tiempoTotalSeg = 60*50;
         tiempoDesSeg = 60*10;
+        letraTiempo = '50:00';
+        letraDescanso = '10:00';
     });
     btn5.addEventListener('click', function(){
         cronometro.textContent = '60:00';
         descanso.textContent = '10:00';
         tiempoTotalSeg = 60*60;
         tiempoDesSeg = 60*10;
+        letraTiempo = '60:00';
+        letraDescanso = '10:00';
     });
     btn6.addEventListener('click', function(){
         cronometro.textContent = '60:00';
         descanso.textContent = '15:00';
         tiempoTotalSeg = 60*60;
         tiempoDesSeg = 60*15;
+        letraTiempo = '60:00';
+        letraDescanso = '15:00';
     });
 }
 
@@ -112,11 +129,14 @@ function configuracion(){
 function empezarContador(){
     let btnEmpezar = document.getElementById('btnEmpezar');
     let btnStop = document.getElementById('btnStop');
+    let btnRestart = document.getElementById('btnRestart');
     btnStop.classList.add('oculto');
+    btnRestart.classList.add('oculto');
     
     btnEmpezar.addEventListener('click', function(){
         btnEmpezar.classList.add('oculto');
         btnStop.classList.remove('oculto');
+        btnRestart.classList.remove('oculto');
         ocultarBotones();
         cronometro.classList.add('cronometro-funcionando');
         descanso.classList.add('descanso-funcionando');
@@ -157,10 +177,14 @@ function empezarContador(){
 }
 
 function resetear(){
-    let btnReset = document.getElementById('btnReset');
+    let btnReset = document.getElementById('btnRestart');
     btnReset.addEventListener('click', function(){
-        clearInterval(reloj);
-        
+        let partesTiempo = letraTiempo.split(':');
+        tiempoTotalSeg = (parseInt(partesTiempo[0]) * 60) + parseInt(partesTiempo[1]);
+        let partesDescanso = letraDescanso.split(':');
+        tiempoDesSeg = (parseInt(partesDescanso[0]) * 60) + parseInt(partesDescanso[1]);
+        cronometro.textContent = letraTiempo;
+        descanso.textContent = letraDescanso;
     });
 }
 
@@ -184,6 +208,7 @@ function musica(){
 function reproducirMusica(){
     let reproductorAudio = document.getElementById('reproductorAudio');
     playMusic.addEventListener('click', function(){
+        canvas.style.display = "block";
         if(!reproductorAudio.getAttribute('src')){
             let cancion = Math.floor(Math.random()*arrayCanciones.length);
             reproductorAudio.src = arrayCanciones[cancion].ruta;
@@ -196,10 +221,8 @@ function reproducirMusica(){
         else{
             playMusic.textContent = 'play_circle';
             reproductorAudio.pause();
+            canvas.style.display = "none";
         }
-
-        
-
     });
 
     let barraVolumen = document.getElementById('volumen');

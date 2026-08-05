@@ -3,6 +3,10 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
     overflow-x: hidden;
 }
 
@@ -36,6 +40,7 @@ main{
         0 0 25px #1639ff, 
         inset 0 0 5px #1639ff;
     backdrop-filter: blur(10px);
+    flex: 1;
 }
 
 #cronometro{
@@ -223,10 +228,21 @@ footer{
     text-align: center;
     margin-bottom: 0;
     margin-top: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center
+}
+
+canvas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center
 }
 
 .bajo{
-        display: flex;
+    display: flex;
     flex-direction: row;
     align-items: center;
     align-content: center;
