@@ -51,6 +51,7 @@ empezarContador();
 musica();
 visualizador();
 resetear();
+donaciones();
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 // FUNCIONES CON LA LOGICA
@@ -64,7 +65,7 @@ function cambiarTempo(){
         tiempoTotalSeg = 60*25;
         tiempoDesSeg = 60*5;
         letraTiempo = '25:00';
-        letraDescanso = '5:00';
+        letraDescanso = '05:00';
     });
     btn2.addEventListener('click', function(){
         cronometro.textContent = '30:00';
@@ -72,7 +73,7 @@ function cambiarTempo(){
         tiempoTotalSeg = 60*30;
         tiempoDesSeg = 60*5;
         letraTiempo = '30:00';
-        letraDescanso = '5:00';
+        letraDescanso = '05:00';
 
     });
     btn3.addEventListener('click', function(){
@@ -113,15 +114,30 @@ function cambiarTempo(){
 function configuracion(){
     let btnConfig = document.getElementById('configuracion');
     let pantalla = document.getElementById('pantalla-config');
-    pantalla.classList.add('oculto');
+    pantalla.classList.remove('active');
+
     btnConfig.addEventListener('click', function(){
-        console.log('pulsado el boton');
-        pantalla.classList.remove('oculto');
+        pantalla.classList.add('active');
     });
 
     let btnCerrar = document.getElementById('btnCerrarConfig');
     btnCerrar.addEventListener('click', function(){
-        pantalla.classList.add('oculto');
+        pantalla.classList.remove('active');
+    });
+}
+
+function donaciones(){
+    let donaciones = document.getElementById('hucha');
+    let pantalla = document.getElementById('pantalla-donacion');
+    pantalla.classList.remove('active');
+
+    donaciones.addEventListener('click', function(){
+        pantalla.classList.add('active');
+    });
+
+    let btnCerrar = document.getElementById('btnCerrarDona');
+    btnCerrar.addEventListener('click', function(){
+        pantalla.classList.remove('active');
     });
 }
 
@@ -196,7 +212,6 @@ function musica(){
         if(respuesta.ok){
             respuesta.json().then(function(data){
                 arrayCanciones = data;
-                console.log(arrayCanciones);
             });
         }
         else{

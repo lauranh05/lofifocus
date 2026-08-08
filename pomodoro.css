@@ -268,21 +268,38 @@ canvas{
     cursor: pointer;
 }
 
-.pantalla-config{
-    text-align: center;
-    position: absolute;
-    background-color: #ffffff;
-    font-size: 1.8em;
-    border-radius: 5px;
-    padding: 6px;
-    width: 200px;
-    height: 200px;
-    line-height: 1;
+.pantalla-config {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1008;
+    align-items: center;
+    justify-content: center;
+}
 
-    top: 75%;
-    left: 81%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
+.pantalla-config.active {
+    display: flex;
+}
+
+.pantalla-config-inner {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+    font-size: 1.8em;
+    text-align: center;
+    width: 300px;
+    opacity: 0;
+    filter: blur(6px);
+    animation: anim-modal 0.6s forwards;
+}
+
+@keyframes anim-modal {
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
 }
 
 .pantalla-config .material-icons{
